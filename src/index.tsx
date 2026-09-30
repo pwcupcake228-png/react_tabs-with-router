@@ -7,3 +7,9 @@ createRoot(document.getElementById('root') as HTMLElement).render(
     <App />
   </HashRouter>,
 );
+
+// http://mesuperapp.com/#users
+
+// BrowserRouter redirect to index. html for *
+
+// http://mesuperapp.com/#users.html ==>  // http://mesuperapp.com/index/html
