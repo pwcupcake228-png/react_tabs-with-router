@@ -1,6 +1,15 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import cn from 'classnames';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export const HomeLayout: React.FC = () => {
+  const { pathname } = useLocation();
+
+  function isActive(path: string) {
+    return (
+      pathname === path || (path !== '/' && pathname.startsWith(`${path}/`))
+    );
+  }
+
   return (
     <>
       <nav
@@ -9,23 +18,22 @@ export const HomeLayout: React.FC = () => {
       >
         <div className="container">
           <div className="navbar-brand">
-            <NavLink
+            <Link
               to="/"
-              end
-              className={({ isActive }) =>
-                `navbar-item ${isActive ? 'is-active' : ''}`
-              }
+              className={cn('navbar-item', {
+                'is-active': isActive('/'),
+              })}
             >
               Home
-            </NavLink>
-            <NavLink
+            </Link>
+            <Link
               to="/tabs"
-              className={({ isActive }) =>
-                `navbar-item ${isActive ? 'is-active' : ''}`
-              }
+              className={cn('navbar-item', {
+                'is-active': isActive('/tabs'),
+              })}
             >
               Tabs
-            </NavLink>
+            </Link>
           </div>
         </div>
       </nav>
